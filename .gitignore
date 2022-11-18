@@ -2,4 +2,4 @@ lib/back/build/
 lib/back/models/
 lib/back/dist/
 files/
-lib/back/build/storage/
+lib/back/storage/
