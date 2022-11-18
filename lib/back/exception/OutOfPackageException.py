@@ -1,0 +1,2 @@
+class OutOfPackageException(Exception):
+    pass

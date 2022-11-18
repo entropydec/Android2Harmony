@@ -1,0 +1,6 @@
+task id: 1
+execution strategy: q_learning
+apk path: /Users/xuhao/SeverProjects/online-android-vm-execution/vm_execution-back/storage/apps/1/apk/8-RSFileManager.apk
+parameters: {'time_limit': 120}
+package name: com.rs.explorer.filemanager
+main_activity: com.edili.filemanager.module.activity.FirstActivity
