@@ -1,3 +1,4 @@
+
 class MakeScripts:
 
     def __init__(self,transition):
@@ -6,6 +7,6 @@ class MakeScripts:
 
     def get_scripts(self):
         scripts=[]
-        location=self.var+'.'
+        location=self.var+'('+')'
 
     
