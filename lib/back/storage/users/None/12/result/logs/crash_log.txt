@@ -94,3 +94,5 @@
 11-15 15:10:54.809  6321  6321 E AndroidRuntime: 	at androidx.test.runner.MonitoringInstrumentation.callActivityOnCreate(MonitoringInstrumentation.java:711)
 11-15 15:10:54.809  6321  6321 E AndroidRuntime: 	at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:3422)
 11-15 15:10:54.809  6321  6321 E AndroidRuntime: 	... 11 more
+--------- beginning of main
+--------- beginning of system
