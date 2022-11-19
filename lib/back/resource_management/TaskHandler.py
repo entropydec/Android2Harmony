@@ -194,7 +194,7 @@ class TaskHandler(threading.Thread):
             # 更新app信息
             self.__update_app_info()
             # 处理弹出的对话框 常见于第一次安装app之后需要授予权限
-            # self.__handle_dialog_box()
+            self.__handle_dialog_box()
             # 给权限
             self.__grant_permissions()
             # 启动app
