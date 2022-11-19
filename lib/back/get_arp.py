@@ -39,7 +39,7 @@ class MyARP():
         handler = TaskHandler(task, device, resource, result, container)
         handler.start()
         handler.join()
-        result.return_result()
+        #result.return_result()
         #print(task.get_arp().get_transitions()[0])
         return task.get_arp()
 
