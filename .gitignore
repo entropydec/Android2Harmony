@@ -3,3 +3,4 @@ lib/back/models/
 lib/back/dist/
 files/
 lib/back/storage/
+*/__pycache__
