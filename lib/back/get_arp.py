@@ -1,6 +1,7 @@
 from Model.Task import Task, PersistenceType
 from AutomaticExploringFramework import AutomaticExploringFramework as AEF
 import os
+import re
 import time
 from Model.App import App
 from executor.Executor import ExecutionStrategy
@@ -16,15 +17,26 @@ import uiautomator2 as u2
 from util.FileHelper import FileHelper
 from werkzeug.datastructures import FileStorage
 
+old_action='from appium.webdriver.common.touch_action import TouchAction\n'
+new_action='from executor.appium_driver.AppiumScriptExecutor import TouchAction\n'
+
 class MyARP():
     def __init__(self) -> None:
         pass
     def getARP(apk,script):
         apk_path = os.path.abspath(apk)
         script_file=None
-        with open(script,'rb') as fp:
-            script_file=FileStorage(fp)
+        with open(script,'r+') as fp:
+            tmp=open('tmp.py','w+')
+            for line in fp.readlines():
+                if line==old_action:
+                    line=new_action
+                tmp.write(line)
+            tmp.close()
+        with open('tmp.py','rb') as fp:
+            script_file = FileStorage(fp)
             script_path = FileHelper.upload_script(10, script_file)
+        os.remove('tmp.py')
         device=u2.connect_usb('emulator-5554')
         result=ResultManager()
         container=Container()

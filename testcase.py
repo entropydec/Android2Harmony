@@ -36,6 +36,7 @@ def fun2(driver):
     # test case3: 查看文件属性
     el = driver.find_elements_by_class_name("android.widget.RelativeLayout")[1]
     TouchAction(driver).long_press(el).perform()
+    # el.long_press()
     time.sleep(1)
 
     el = driver.find_element_by_accessibility_id("More options")
@@ -103,7 +104,8 @@ def fun4(driver):
 def fun5(driver):
     # test case6: 文件删除
     el = driver.find_elements_by_class_name("android.widget.RelativeLayout")[1]
-    TouchAction(driver).long_press(el).perform()
+    # TouchAction(driver).long_press(el).perform()
+    el.tap_hold()
     time.sleep(1)
 
     el = driver.find_element_by_accessibility_id("Delete")
@@ -116,4 +118,5 @@ def fun5(driver):
 
 def run(driver):
     fun1(driver)
-    driver.quit()
+    fun2(driver)
+    #driver.quit()

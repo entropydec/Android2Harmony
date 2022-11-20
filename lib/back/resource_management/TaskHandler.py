@@ -204,7 +204,7 @@ class TaskHandler(threading.Thread):
                 dump_coverage_process = self.__code_coverage_detection()
             # 启动崩溃日志获取
             dump_crash_log_process = self.__dump_crash_log()
-            time.sleep(5)
+            time.sleep(2)
             # 执行Executor
             self.executor.execute()
             # 更新task状态
@@ -237,4 +237,5 @@ class TaskHandler(threading.Thread):
                 self.logging.error(f"Error:task-{self.task.get_task_id()}:{e}")
             finally:
                 # 执行结束释放资源
-                self.__release_resource()
+                # self.__release_resource()
+                pass
