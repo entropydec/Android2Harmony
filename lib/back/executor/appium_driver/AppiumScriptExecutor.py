@@ -6,18 +6,18 @@ from util.FileHelper import FileHelper
 import sys
 from executor.appium_driver.UIObjectWrapper import UIObjectWrapper
 
-class TouchAction:
+'''class TouchAction:
     def __init__(self,device:Device):
         self.device=device
         self.element=None
     def long_press(self,object:UIObjectWrapper):
-        return LongPressAction(self,object)
+        return LongPressAction(self,object)'''
         
-class LongPressAction:
+'''class LongPressAction:
     def __init__(self,action:TouchAction,object:UIObjectWrapper):
         self.element=object
     def perform(self):
-        self.element.tap_hold()
+        self.element.tap_hold()'''
 
 class AppiumScriptExecutor(Executor):
     def __init__(self, arp, device: Device, monitor, parameters):

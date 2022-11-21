@@ -14,6 +14,10 @@ desired_caps["resetKeyboard"] = True
 desired_caps['appPackage'] = 'com.michaldabski.filemanager'
 desired_caps['appActivity'] = '.folders.FolderActivity'
 
+def fun0(driver):
+    el = driver.find_elements_by_class_name("android.widget.RelativeLayout")[4]
+    TouchAction(driver).long_press(el).perform()
+
 def fun1(driver):
     # test case1: 启动webdriver执⾏行行测试脚本
     # driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
@@ -117,6 +121,7 @@ def fun5(driver):
     time.sleep(3)
 
 def run(driver):
-    fun1(driver)
-    fun2(driver)
+    fun0(driver)
+    #fun1(driver)
+    #fun2(driver)
     #driver.quit()

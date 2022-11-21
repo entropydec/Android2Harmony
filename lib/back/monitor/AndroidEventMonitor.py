@@ -11,10 +11,10 @@ class AndroidEventMonitor(Monitor):
         else:
             return current_state
 
-    def after_action(self, source_state, trigger_action, trigger_identify):
+    def after_action(self, source_state, trigger_action, trigger_identify, condition=None):
         target_state = self.state_generator.catch_state()
         transition = self.transition_generator.build_transition(source_state, target_state, trigger_action,
-                                                                trigger_identify)
+                                                                trigger_identify, condition)
         return target_state, transition
 
     def before_click(self, current_state=None):
@@ -26,8 +26,8 @@ class AndroidEventMonitor(Monitor):
     def before_long_click(self, current_state):
         return self.before_action(current_state)
 
-    def after_long_click(self, source_state, trigger_identify):
-        return self.after_action(source_state, 'long_click', trigger_identify)
+    def after_long_click(self, source_state, trigger_identify, condition=None):
+        return self.after_action(source_state, 'long_click', trigger_identify, condition)
 
     def before_edit(self, current_state=None):
         return self.before_action(current_state)

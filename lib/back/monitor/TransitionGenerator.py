@@ -12,11 +12,11 @@ class TransitionGenerator:
         self.states = states
         self.device = device
 
-    def build_transition(self, source_state, target_state, trigger_action, trigger_identify: dict):
+    def build_transition(self, source_state, target_state, trigger_action, trigger_identify: dict, condition: dict=None):
         transition = Transition(self.arp_id)
         transition.set_source_id(source_state.get_state_id())
         transition.set_target_id(target_state.get_state_id())
-        event = Event(trigger_action, trigger_identify, None)
+        event = Event(trigger_action, trigger_identify, condition)
         transition.set_event(event)
         same_transition = self.search_same_transition(transition)
         if same_transition is None:

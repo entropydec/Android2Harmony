@@ -18,7 +18,7 @@ from util.FileHelper import FileHelper
 from werkzeug.datastructures import FileStorage
 
 old_action='from appium.webdriver.common.touch_action import TouchAction\n'
-new_action='from executor.appium_driver.AppiumScriptExecutor import TouchAction\n'
+new_action='from executor.appium_driver.TouchAction import TouchAction\n'
 
 class MyARP():
     def __init__(self) -> None:

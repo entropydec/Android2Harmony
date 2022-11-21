@@ -38,7 +38,9 @@ class UIObjectWrapper:
             # XMLElement的longclick方法不能指定duration
             self.element.long_click()
         time.sleep(4)
-        self.driver.current_state = self.monitor.after_long_click(self.driver.current_state, self.trigger_identifier)[0]
+        condition={}
+        condition['duration']=duration
+        self.driver.current_state = self.monitor.after_long_click(self.driver.current_state, self.trigger_identifier, condition)[0]
     def long_press(self, duration=1.0):
         self.tap_hold(duration)
     def long_click(self, duration=1.0):
