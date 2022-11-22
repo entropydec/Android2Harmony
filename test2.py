@@ -3,16 +3,6 @@ from xml.etree.ElementPath import xpath_tokenizer
 import uiautomator2
 import subprocess
 
-class MyDevice:
-    def __init__(self,name):
-        self.connect(name)
-    def connect(self,name):
-        self.device=uiautomator2.connect_usb()
-    def install(self,pkg):
-        self.device.app_install(pkg)
-    def start(self,info):
-        self.device.app_start(info[0],info[1])
-
 def wait():
     input('\npress any key to continue...')
 
@@ -43,10 +33,13 @@ if __name__=='__main__':
     device(className='android.widget.RelativeLayout')[1].long_click(1.0)
 
     wait()
-    device(description='More options').click()
+    device(description='更多选项').click()
 
     wait()
-    device(className='android.widget.LinearLayout')[10].click()
+    els=device(className='android.widget.LinearLayout')
+    els[5].click()
+    #el=device.xpath('//android.widget.ListView/android.widget.LinearLayout[6]/android.widget.RelativeLayout[1]')
+    #el.click()
 
     wait()
     device(resourceId='android:id/button1').click()

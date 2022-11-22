@@ -26,8 +26,8 @@ class MyARP():
     def getARP(apk,script):
         apk_path = os.path.abspath(apk)
         script_file=None
-        with open(script,'r+') as fp:
-            tmp=open('tmp.py','w+')
+        with open(script,'r+',encoding='utf-8') as fp:
+            tmp=open('tmp.py','w+',encoding='utf-8')
             for line in fp.readlines():
                 if line==old_action:
                     line=new_action

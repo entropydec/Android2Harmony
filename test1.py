@@ -21,7 +21,6 @@ def fun0(driver):
 def fun1(driver):
     # test case1: 启动webdriver执⾏行行测试脚本
     # driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
-    time.sleep(3)
 
     # test case2: 文件浏览
     el = driver.find_elements_by_class_name("android.widget.RelativeLayout")[4]
@@ -30,34 +29,27 @@ def fun1(driver):
 
     el = driver.find_elements_by_class_name("android.widget.RelativeLayout")[0]
     el.click()
-    time.sleep(1)
 
     el = driver.find_element_by_id("com.michaldabski.filemanager:id/menu_navigate_up")
     el.click()
-    time.sleep(3)
 
 def fun2(driver):
     # test case3: 查看文件属性
     el = driver.find_elements_by_class_name("android.widget.RelativeLayout")[1]
     TouchAction(driver).long_press(el).perform()
     # el.long_press()
-    time.sleep(1)
 
     el = driver.find_element_by_accessibility_id("More options")
     el.click()
-    time.sleep(1)
 
-    el = driver.find_elements_by_class_name("android.widget.LinearLayout")[10]
+    el = driver.find_elements_by_class_name("android.widget.LinearLayout")[5]
     el.click()
-    time.sleep(1)
 
     el = driver.find_element_by_id("android:id/button1")
     el.click()
-    time.sleep(1)
 
     el = driver.find_element_by_id("android:id/action_mode_close_button")
     el.click()
-    time.sleep(3)
 
 def fun3(driver):
     # test case4: 文件重命名
@@ -121,7 +113,7 @@ def fun5(driver):
     time.sleep(3)
 
 def run(driver):
-    fun0(driver)
-    #fun1(driver)
-    #fun2(driver)
+    #fun0(driver)
+    fun1(driver)
+    fun2(driver)
     #driver.quit()
