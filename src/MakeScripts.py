@@ -15,20 +15,25 @@ class MakeScripts:
     def build_param(self,name,var):
         return '('+name+'=\''+var+'\')'
 
-    def make_location(self,identifer,instance):
+    def make_location(self,identifier,instance):
         location=self.el+'='
-        if 'className' in identifer:
-            location+=self.make_class_name_location(identifer)
-        
+        if 'className' in identifier:
+            location+=self.make_class_name_location(identifier)
+        elif 'resourceId' in identifier:
+            location+=self.make_resouce_id_location(identifier)
+
         if instance==None:
-            if 'instance' in identifer:
-                location+='['+str(identifer['instance'])+']'
+            if 'instance' in identifier:
+                location+='['+str(identifier['instance'])+']'
         else:
             location+='['+str(instance)+']'
         return location
 
-    def make_class_name_location(self,identifer):
-        return self.device+self.build_param('className',identifer['className'])
+    def make_class_name_location(self,identifier):
+        return self.device+self.build_param('className',identifier['className'])
+
+    def make_resouce_id_location(self,identifier):
+        return self.device+self.build_param('resourceId',identifier['resourceId'])
         
     def make_event(self):
         pass
