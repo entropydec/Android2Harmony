@@ -2,7 +2,13 @@ import os,sys
 sys.path.append('./lib/back')
 
 from get_arp import MyARP
-arp=MyARP.getARP('../apk/filemanager.apk','test1.py')
+from src.MakeScripts import MakeScripts
+
+arp=MyARP().get_arp('../apk/filemanager.apk','test1.py')
 #save arp(参考util.arphelpler)
 
-print(arp.get_transitions()[0])
+trans1=arp.get_transitions()[0]
+print(trans1)
+
+scripts1=MakeScripts(trans1).get_scripts()
+print(scripts1)

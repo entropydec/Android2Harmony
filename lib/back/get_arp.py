@@ -1,8 +1,6 @@
 from Model.Task import Task, PersistenceType
 from AutomaticExploringFramework import AutomaticExploringFramework as AEF
 import os
-import re
-import time
 from Model.App import App
 from executor.Executor import ExecutionStrategy
 from comparison.StateComparison import StateComparisonStrategy
@@ -21,10 +19,11 @@ old_action='from appium.webdriver.common.touch_action import TouchAction\n'
 new_action='from executor.appium_driver.TouchAction import TouchAction\n'
 
 class MyARP():
-    def __init__(self) -> None:
+    def __init__(self):
         pass
-    def getARP(apk,script):
-        apk_path = os.path.abspath(apk)
+    
+    def upload_file(self,script):
+        script_path=None
         script_file=None
         with open(script,'r+',encoding='utf-8') as fp:
             tmp=open('tmp.py','w+',encoding='utf-8')
@@ -35,8 +34,11 @@ class MyARP():
             tmp.close()
         with open('tmp.py','rb') as fp:
             script_file = FileStorage(fp)
-            script_path = FileHelper.upload_script(10, script_file)
+            script_path = FileHelper.upload_script(0, script_file)
         os.remove('tmp.py')
+        return script_path
+
+    def run_task(slef,script_path,apk_path)->Task:
         device=u2.connect_usb('emulator-5554')
         result=ResultManager()
         container=Container()
@@ -46,14 +48,19 @@ class MyARP():
         app = App(None, apk_path, None, AppHelper.package(apk_path), None)
         arp = AppRunningPathModel(None, app)
         task = Task(ExecutionStrategy.APPIUM, StateComparisonStrategy.XML, parameters, None, arp, False)
-        task.set_task_id(12)
+        task.set_task_id(0)
         task.set_persistence(PersistenceType.DISK)
         handler = TaskHandler(task, device, resource, result, container)
         handler.start()
         handler.join()
-        #result.return_result()
-        #print(task.get_arp().get_transitions()[0])
+        return task
+
+
+    def get_arp(self,apk,script):
+        apk_path = os.path.abspath(apk)
+        script_path=self.upload_file(script)
+        task=self.run_task(script_path,apk_path)
         return task.get_arp()
 
 if __name__ == '__main__':
-    MyARP.getARP()
+    MyARP.get_arp()

@@ -42,7 +42,7 @@ def fun2(driver):
     el = driver.find_element_by_accessibility_id("More options")
     el.click()
 
-    el = driver.find_elements_by_class_name("android.widget.LinearLayout")[5]
+    el = driver.find_elements_by_class_name("android.widget.LinearLayout")[10]
     el.click()
 
     el = driver.find_element_by_id("android:id/button1")
@@ -115,5 +115,5 @@ def fun5(driver):
 def run(driver):
     #fun0(driver)
     fun1(driver)
-    fun2(driver)
+    #fun2(driver)
     #driver.quit()
