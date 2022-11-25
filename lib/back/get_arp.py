@@ -1,5 +1,5 @@
 from Model.Task import Task, PersistenceType
-from AutomaticExploringFramework import AutomaticExploringFramework as AEF
+#from AutomaticExploringFramework import AutomaticExploringFramework as AEF
 import os
 from Model.App import App
 from executor.Executor import ExecutionStrategy
