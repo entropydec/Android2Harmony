@@ -4,6 +4,21 @@ from Model.Transition import Transition
 from uiautomator2 import Device
 from Model.Event import Event
 
+class ActionScripts:
+    def __init__(self,transition:Transition,location,event):
+        self.transition=transition
+        self.location=location
+        self.event=event
+
+    def get_transition(self)->Transition:
+        return self.transition
+
+    def get_location_stmt(self):
+        return self.location
+
+    def get_event_stmt(self):
+        return self.event
+
 class MakeScripts:
 
     def __init__(self,transition:Transition,driver:Device):
@@ -61,16 +76,13 @@ class MakeScripts:
             return 'long_click('+self.build_param('duration',condition['duration'])+')'
 
 
-    def get_scripts(self):
-        scripts=[]
-        location_script=''
+    def get_scripts(self, index)->ActionScripts:
         identifier=self.event.get_trigger_identifier()
         action=self.event.get_trigger_action()
         condition=self.event.get_conditions()
-        location_script=self.make_location(identifier,None)
-        scripts.append(location_script)
-        event_script=self.make_event(action,condition)
-        scripts.append(event_script)
+        location_stmt=self.make_location(identifier,None)
+        event_stmt=self.make_event(action,condition)
+        scripts=ActionScripts(self.transition,location_stmt,event_stmt)
         return scripts
 
 if __name__=='__main__':
