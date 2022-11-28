@@ -3,28 +3,13 @@ import os,sys
 from Model.Transition import Transition
 from uiautomator2 import Device
 from Model.Event import Event
-
-class ActionScripts:
-    def __init__(self,transition:Transition,location,event):
-        self.transition=transition
-        self.location=location
-        self.event=event
-
-    def get_transition(self)->Transition:
-        return self.transition
-
-    def get_location_stmt(self):
-        return self.location
-
-    def get_event_stmt(self):
-        return self.event
+from src.Model.ActionScripts import ActionScripts
 
 class MakeScripts:
 
-    def __init__(self,transition:Transition,driver:Device):
+    def __init__(self,transition:Transition):
         self.el='el'
         self.device='device'
-        self.driver=driver
         self.transition=transition
         self.event:Event=self.transition.get_event()
 
@@ -41,19 +26,24 @@ class MakeScripts:
 
         if instance==None:
             if 'instance' in identifier:
-                location+='['+str(identifier['instance'])+']'
+                location+='['+\
+                            str(identifier['instance'])+\
+                            ']'
         else:
             location+='['+str(instance)+']'
         return location
 
     def make_class_name_location(self,identifier):
-        return self.device+self.build_param('className',identifier['className'])
+        return self.device+\
+                self.build_param('className',identifier['className'])
 
     def make_resouce_id_location(self,identifier):
-        return self.device+self.build_param('resourceId',identifier['resourceId'])
+        return self.device+\
+                self.build_param('resourceId',identifier['resourceId'])
         
     def make_description_location(self,identifier):
-        return self.device+self.build_param('description',identifier['description'])
+        return self.device+\
+                self.build_param('description',identifier['description'])
     
     def make_event(self,action,condition):
         event=self.el+'.'
@@ -73,16 +63,20 @@ class MakeScripts:
         if 'duration' not in condition:
             return 'long_click()'
         else:
-            return 'long_click('+self.build_param('duration',condition['duration'])+')'
+            return 'long_click('+\
+                        self.build_param('duration',condition['duration'])+\
+                        ')'
 
 
-    def get_scripts(self, index)->ActionScripts:
+    def get_scripts(self)->ActionScripts:
         identifier=self.event.get_trigger_identifier()
         action=self.event.get_trigger_action()
         condition=self.event.get_conditions()
         location_stmt=self.make_location(identifier,None)
         event_stmt=self.make_event(action,condition)
-        scripts=ActionScripts(self.transition,location_stmt,event_stmt)
+        scripts=ActionScripts(self.transition,\
+                                location_stmt,\
+                                event_stmt)
         return scripts
 
 if __name__=='__main__':
