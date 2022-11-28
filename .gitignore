@@ -1,6 +1,6 @@
-lib/back/build/
-lib/back/models/
-lib/back/dist/
+lib/arp/build/
+lib/arp/models/
+lib/arp/dist/
+lib/arp/storage/
 files/
-lib/back/storage/
 **/__pycache__
